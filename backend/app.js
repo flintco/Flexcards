@@ -1,9 +1,10 @@
 var express = require("express");
 var cors = require("cors");
 var routerForFirst = require('./routes/firstRoute');
+let config = require('../backend/DBConfig');
 
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://dbUser:password@cluster0.00vzk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+var mongoDB = config;
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true})
   .then((result) => console.log('Connected to DB'))
   .catch((error) => console.log(err));
