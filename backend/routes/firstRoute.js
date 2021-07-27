@@ -9,9 +9,11 @@ theRouter.get('/', function(req, res, next) {
     mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true})
         .then((result) => console.log('Connected to DB'))
         .catch((error) => console.log(err));
-
     var db = mongoose.connection;
-    db.on('error', console.error.bind(console, 'MongoDB connection error: '));
+    db.on('error', () => console.error('Connection error: '));
+    db.once('open', () => {
+        console.log('Connected')
+    })
 
     res.send('Get request recieved 2')
 });
