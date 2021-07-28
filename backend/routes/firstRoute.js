@@ -19,12 +19,21 @@ theRouter.get('/', function(req, res, next) {
 
     const Tank = mongoose.model('Card-Deck', schema);
 
-    const medium = new Tank({ size: 'medium' });
+    Tank.findOne({size: "small"}, function(err, person) {
+        if (err) return handleError(err);
+        console.log(person);
+    });
+
+    //Can't override solution error: https://stackoverflow.com/questions/19051041/cannot-overwrite-model-once-compiled-mongoose
+
+    /*const medium = new Tank({ size: 'medium' });
 
     Tank.create({ size: 'medium' }, function (err, medium) {
         if (err) return handleError(err);
         // saved!
-    });
+    }); */
+
+
 
     res.send('Get request recieved 2')
 });
