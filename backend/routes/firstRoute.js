@@ -15,27 +15,16 @@ theRouter.get('/', function(req, res, next) {
         console.log('Connected')
     })
 
-    /*var Schema = mongoose.Schema;
-    
-    var SomeModelSchema = new Schema({
-        a_string: String,
-        a_date: Date
-    }); */
-
-    const schema = new mongoose.Schema({name: 'string', size: 'string'});
+    const schema = new mongoose.Schema({name: 'string', size: 'string'}, {collection: 'Card-Deck'});
 
     const Tank = mongoose.model('Card-Deck', schema);
 
-    Tank.create({ size: 'small' }, function (err, small) {
+    const medium = new Tank({ size: 'medium' });
+
+    Tank.create({ size: 'medium' }, function (err, medium) {
         if (err) return handleError(err);
         // saved!
     });
-
-    //const small = new Tank({size: 'small'});
-
-    /*small.save(function (err) {
-        if (err) return handleError(err)
-    });*/
 
     res.send('Get request recieved 2')
 });
