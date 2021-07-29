@@ -1,11 +1,11 @@
 var express = require('express');
 var theRouter = express.Router();
-let config = require('../DBConfig');
+let connectionString = require('../DBConfig');
 var mongoose = require('mongoose');
+var cardModel = require('../cardModel');
 
 theRouter.get('/', function(req, res, next) {
     //MongoDB
-    var connectionString = config;
     mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true})
         .then((result) => console.log('Connected to DB'))
         .catch((error) => console.log(err));
@@ -15,25 +15,15 @@ theRouter.get('/', function(req, res, next) {
         console.log('Connected')
     })
 
-    const schema = new mongoose.Schema({name: 'string', size: 'string'}, {collection: 'Card-Deck'});
-
-    const Tank = mongoose.model('Card-Deck', schema);
-
-    Tank.findOne({size: "small"}, function(err, person) {
+    /*cardModel.findOne({size: "small"}, function(err, person) {
         if (err) return handleError(err);
         console.log(person);
-    });
-
-    //Can't override solution error: https://stackoverflow.com/questions/19051041/cannot-overwrite-model-once-compiled-mongoose
-
-    /*const medium = new Tank({ size: 'medium' });
-
-    Tank.create({ size: 'medium' }, function (err, medium) {
-        if (err) return handleError(err);
-        // saved!
     }); */
 
-
+    cardModel.create({ size: 'very large' }, function (err, medium) {
+        if (err) return handleError(err);
+        // saved!
+    }); 
 
     res.send('Get request recieved 2')
 });
