@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import CardContainer from './components/CardContainer';
 
 class App extends React.Component{
   constructor(props){
@@ -24,6 +25,7 @@ class App extends React.Component{
       <div>
         <p>First text</p>
         <p>{this.state.result}</p>
+        <CardContainer></CardContainer>
       </div>
     )
   }
