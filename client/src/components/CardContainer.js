@@ -12,6 +12,21 @@ import Typography from '@material-ui/core/Typography';
 class CardContainer extends React.Component{
     constructor(props){
       super(props);
+      this.state = {
+        front: "George Washington",
+        back: "President",
+        hint: "Profession"
+      }
+
+      //Binding needed to work in the callback
+      this.flipCardHandler = this.flipCardHandler.bind(this);
+    }
+
+    flipCardHandler(){
+      this.setState({
+        front: this.state.back,
+        back: this.state.front,
+      });
     }
 
     render(){
@@ -22,12 +37,17 @@ class CardContainer extends React.Component{
             <Card>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                Who was the 1st president of the United States?
+                {this.state.front}
                 </Typography>
+
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {this.state.hint}
+                </Typography> 
+
                 </CardContent>
 
                 <CardActions>
-                  <Button size="small" color="primary">
+                  <Button onClick={this.flipCardHandler} size="small" color="primary">
                     Flip card
                   </Button>
                   <Button size="small" color="primary">
