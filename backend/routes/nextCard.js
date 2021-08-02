@@ -15,15 +15,17 @@ theRouter.get('/', function(req, res, next) {
         console.log('Connected')
     })
 
-    cardModel.findOne({size: "very large"}, function(err, person) {
+  /*  cardModel.findOne({size: "small"}, function(err, person) {
         if (err) return handleError(err);
         console.log(person);
-    });
+    }); */
 
     /*cardModel.create({ size: 'very large' }, function (err, medium) {
         if (err) return handleError(err);
         // saved!
     }); */
+
+    db.disconnect();
 
     res.send('Next Card route successful')
 });
