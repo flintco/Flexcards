@@ -15,12 +15,12 @@ theRouter.get('/', function(req, res, next) {
         console.log('Connected')
     })
 
-    cardModel.create({ size: 'above average' }, function (err, medium) {
+    cardModel.create({ size: 'slightly above average' }, function (err, medium) {
         if (err) return handleError(err);
         // saved!
     });
 
-    db.disconnect();
+    //db.disconnect();
 
     res.send('New Card route successful')
 });
