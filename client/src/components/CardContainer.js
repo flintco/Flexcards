@@ -1,4 +1,5 @@
 import React from 'react';
+import './CardContainer.css';
 import Card from '@material-ui/core/Card'
 
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -50,7 +51,10 @@ class CardContainer extends React.Component{
           <div>
             <p>The is the cards component</p>
 
-            <Card>
+            <Card style= {{
+              maxWidth: 345,
+              backgroundColor: "#fafafa",
+            }}>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
                 {this.state.front}
