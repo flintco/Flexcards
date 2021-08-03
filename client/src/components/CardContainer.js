@@ -13,20 +13,36 @@ class CardContainer extends React.Component{
     constructor(props){
       super(props);
       this.state = {
-        front: "George Washington",
-        back: "President",
-        hint: "Profession"
+        front: "John Adams",
+        back: "Lawyer",
+        hint: "Job"
       }
 
       //Binding needed to work in the callback
       this.flipCardHandler = this.flipCardHandler.bind(this);
+      this.nextCardHandler = this.nextCardHandler.bind(this);
     }
 
     flipCardHandler(){
+      console.log('Flip handler has started');
       this.setState({
         front: this.state.back,
         back: this.state.front,
       });
+    }
+
+    nextCardHandler(){
+      //"that" variable keeps track of the original "this" because "this" value can change. 
+      var that = this;
+      fetch("http://localhost:9000/nextCard")
+        .then(res => res.json())
+        .then(res => that.setState({
+            front: res.front,
+            back: res.back,
+            hint: res.hint
+            }))
+        .catch(console.error);
+
     }
 
     render(){
@@ -50,7 +66,7 @@ class CardContainer extends React.Component{
                   <Button onClick={this.flipCardHandler} size="small" color="primary">
                     Flip card
                   </Button>
-                  <Button size="small" color="primary">
+                  <Button onClick={this.nextCardHandler} size="small" color="primary">
                     Next Card
                   </Button>
                 </CardActions>

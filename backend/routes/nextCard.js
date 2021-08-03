@@ -15,14 +15,15 @@ theRouter.get('/', function(req, res, next) {
         console.log('Connected')
     })
 
-    cardModel.findOne({front: "George Washington"}, function(err, person) {
+    cardModel.findOne({front: "George Washington"}, function(err, card) {
         if (err) return handleError(err);
-        console.log(person.back);
+        console.log(card);
+        res.send(card)
     });
 
     //db.disconnect();
 
-    res.send('Next Card route successful')
+    //res.send(card)
 });
 
 module.exports = theRouter;
