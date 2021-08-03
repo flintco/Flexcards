@@ -15,9 +15,9 @@ theRouter.get('/', function(req, res, next) {
         console.log('Connected')
     })
 
-    cardModel.findOne({size: "small"}, function(err, person) {
+    cardModel.findOne({front: "George Washington"}, function(err, person) {
         if (err) return handleError(err);
-        console.log(person.size);
+        console.log(person.back);
     });
 
     //db.disconnect();

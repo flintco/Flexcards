@@ -15,7 +15,7 @@ theRouter.get('/', function(req, res, next) {
         console.log('Connected')
     })
 
-    cardModel.create({ size: 'slightly above average' }, function (err, medium) {
+    cardModel.create({ front: "George Washington", back: "President", hint: "Job Title" }, function (err, medium) {
         if (err) return handleError(err);
         // saved!
     });
