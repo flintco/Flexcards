@@ -16,7 +16,8 @@ class CardContainer extends React.Component{
       this.state = {
         front: "John Adams",
         back: "Lawyer",
-        hint: "Job"
+        hint: "Job",
+        showingFront: true
       }
 
       //Binding needed to work in the callback
@@ -29,6 +30,7 @@ class CardContainer extends React.Component{
       this.setState({
         front: this.state.back,
         back: this.state.front,
+        showingFront: (!this.state.showingFront)
       });
     }
 
@@ -47,6 +49,7 @@ class CardContainer extends React.Component{
     }
 
     render(){
+      const isFrontShowing = this.state.showingFront;
         return (
           <div>
             <p>The is the cards component</p>
@@ -61,7 +64,7 @@ class CardContainer extends React.Component{
                 </Typography>
 
                 <Typography variant="body2" color="textSecondary" component="p">
-                  {this.state.hint}
+                  {isFrontShowing ? this.state.hint : ""}
                 </Typography> 
 
                 </CardContent>
