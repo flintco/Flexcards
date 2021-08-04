@@ -15,7 +15,7 @@ theRouter.get('/', function(req, res, next) {
         console.log('Connected')
     })
 
-    cardModel.create({ front: "George Washington", back: "President", hint: "Job Title" }, function (err, medium) {
+    cardModel.create({ front: "Dwight Eisenhower", back: "1953", hint: "Year of Inauguration" }, function (err, medium) {
         if (err) return handleError(err);
         // saved!
     });
