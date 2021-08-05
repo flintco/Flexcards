@@ -14,9 +14,9 @@ class CardContainer extends React.Component{
     constructor(props){
       super(props);
       this.state = {
-        front: "John Adams",
-        back: "Lawyer",
-        hint: "Job",
+        front: "",
+        back: "",
+        hint: "",
         showingFront: true
       }
 
@@ -46,6 +46,10 @@ class CardContainer extends React.Component{
             }))
         .catch(console.error);
 
+    }
+
+    componentDidMount(){
+      this.nextCardHandler();
     }
 
     render(){
