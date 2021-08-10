@@ -4,7 +4,7 @@ let connectionString = require('../DBConfig');
 var mongoose = require('mongoose');
 var cardModel = require('../cardModel');
 
-theRouter.get('/', function(req, res, next) {
+theRouter.post('/', function(req, res, next) {
     //MongoDB
     mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true})
         .then((result) => console.log('Connected to DB'))
@@ -15,7 +15,7 @@ theRouter.get('/', function(req, res, next) {
         console.log('Connected')
     })
 
-    cardModel.create({ front: "Dwight Eisenhower", back: "1953", hint: "Year of Inauguration" }, function (err, medium) {
+    cardModel.create({ front: "Test1", back: "Test2", hint: "Test3" }, function (err, medium) {
         if (err) return handleError(err);
         // saved!
     });
