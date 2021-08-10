@@ -39,11 +39,22 @@ class CardContainer extends React.Component{
       var that = this;
       fetch("http://localhost:9000/nextCard")
         .then(res => res.json())
-        .then(res => that.setState({
-            front: res.front,
-            back: res.back,
-            hint: res.hint
-            }))
+        .then(res => {
+          if (that.state.showingFront){
+            that.setState({
+              front: res.front,
+              back: res.back,
+              hint: res.hint
+              })
+          } else {
+            that.setState({
+              front: res.front,
+              back: res.back,
+              hint: res.hint,
+              showingFront: true
+              })
+          }
+        })
         .catch(console.error);
 
     }
