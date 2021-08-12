@@ -11,8 +11,6 @@ theRouter.post('/', function(req, res) {
     var cardBack = JSON.stringify(req.body.back);
     var cardHint = JSON.stringify(req.body.hint); 
     
-    //console.log(cardFront);
-    
     //MongoDB
     mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true})
         .then((result) => console.log('Connected to DB'))
@@ -22,12 +20,12 @@ theRouter.post('/', function(req, res) {
     db.once('open', () => {
         console.log('Connected')
     })
-/*
+
     cardModel.create({ front: cardFront, back: cardBack, hint: cardHint}, function (err, medium) {
         if (err) return handleError(err);
         // saved!
     });
-*/
+
     //db.disconnect();
 
     res.send('New Card route successful')

@@ -8,6 +8,8 @@ class App extends React.Component{
     this.state = {
       result: ""
     };
+
+    this.handleNewCardSubmit = this.handleNewCardSubmit.bind(this);
   }
 
   componentWillMount(){
@@ -20,13 +22,12 @@ class App extends React.Component{
     .then(res => res.text())
     .then(res => this.setState({result: res}));
   }
-
    
   postCall(){
         const data = { 
-          front: "C",
-          back: "F",
-          hint: "Last initial"
+          front: 'Plate',
+          back: 'Circle',
+          hint: 'Shape'
         };
         const postOptions = {
           method: 'POST',
@@ -37,7 +38,10 @@ class App extends React.Component{
         fetch("http://localhost:9000/newCard", postOptions)
         .then(res => {console.log(res)})
   }
-  
+
+  handleNewCardSubmit(){
+      this.postCall();
+  }
   
   render(){
     return (
@@ -45,6 +49,9 @@ class App extends React.Component{
         <p>First text</p>
         <p>{this.state.result}</p>
         <CardContainer></CardContainer>
+        <form onSubmit={this.handleNewCard}>
+          <input type="submit" value="Submit"/>
+        </form>
       </div>
     )
   }
