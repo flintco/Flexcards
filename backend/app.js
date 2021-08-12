@@ -6,6 +6,7 @@ var newCardRouter = require('./routes/newCard');
 var app = express();
 
 app.use(cors());
+app.use(express.json());
 app.use('/nextCard', routerForFirst);
 app.use('/newCard', newCardRouter);
 

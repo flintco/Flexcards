@@ -4,7 +4,15 @@ let connectionString = require('../DBConfig');
 var mongoose = require('mongoose');
 var cardModel = require('../cardModel');
 
-theRouter.post('/', function(req, res, next) {
+theRouter.post('/', function(req, res) {
+     
+    //Receive JSON from Post and parse
+    var cardFront = JSON.stringify(req.body.front);
+    var cardBack = JSON.stringify(req.body.back);
+    var cardHint = JSON.stringify(req.body.hint); 
+    
+    //console.log(cardFront);
+    
     //MongoDB
     mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true})
         .then((result) => console.log('Connected to DB'))
@@ -14,12 +22,12 @@ theRouter.post('/', function(req, res, next) {
     db.once('open', () => {
         console.log('Connected')
     })
-
-    cardModel.create({ front: "Test1", back: "Test2", hint: "Test3" }, function (err, medium) {
+/*
+    cardModel.create({ front: cardFront, back: cardBack, hint: cardHint}, function (err, medium) {
         if (err) return handleError(err);
         // saved!
     });
-
+*/
     //db.disconnect();
 
     res.send('New Card route successful')
